@@ -5,7 +5,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("input_file")
 parser.add_argument("output_file")
-parser.add_argument("angle", type=int)
+parser.add_argument("--angle", "-a", type=int, default=90)
 
 args = parser.parse_args()
 
