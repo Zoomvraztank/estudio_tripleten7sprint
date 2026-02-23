@@ -12,10 +12,18 @@ parser.add_argument("-i", "--info", action="store_true", help="Muestra las dimen
 
 args = parser.parse_args()
 
-im = Image.open(args.input_file)
+try:
+    im = Image.open(args.input_file)
 
-if args.info:
-    print("dimensiones:", im.size)
+except FileNotFoundError:
+    print("Error: archivo de entrada no encontrado. Revisa el nombre/ruta.")
+    raise
 
-rotated = im.rotate(args.angle, expand=True)
-rotated.save(args.output_file)
+else:
+    if args.info:
+        print("dimensiones:", im.size)
+
+    rotated = im.rotate(args.angle, expand=True)
+    rotated.save(args.output_file)
+    im.close()
+    print("Ejecución fluida")
